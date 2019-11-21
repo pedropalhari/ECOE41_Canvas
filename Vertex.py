@@ -100,12 +100,11 @@ def initVertex(canvas, GLOBAL_OBJ):
                 if(vertex in neighbors):
                     neighbors.remove(vertex)
 
-            print(vertex, globalGraph)
-
         # Animaçõezinhas de press
         def onEnter(event):
             nonlocal vertex
-            canvas.itemconfig(vertex, fill="white",  outline="black")
+            print(canvas.itemcget(vertex, "fill"))
+            canvas.itemconfig(vertex, fill="white",  outline="black")            
             canvas.itemconfig(text, fill="black")
 
         def onLeave(event):
