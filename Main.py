@@ -3,6 +3,11 @@ import ComponentsHandler
 
 # http://effbot.org/tkinterbook/canvas.htm#Tkinter.Canvas.create_rectangle-method
 
+GLOBAL_OBJ = {
+    'graph': {},
+    'from': -1,
+    'to': -1
+}
 
 def onObjectClick(event):
     print('Got object click', event.x, event.y)
@@ -12,12 +17,13 @@ def onObjectClick(event):
 root = tk.Tk()
 canv = tk.Canvas(root, width=640, height=480)
 
-ComponentManager = ComponentsHandler.initComponents(canv)
+ComponentManager = ComponentsHandler.initComponents(canv, GLOBAL_OBJ)
 
 ComponentManager.createButton(
-    10, 10, 150, 100, text="Opa", callbackFunc=onObjectClick)
+    100, 100, 150, 40, text="Opa", callbackFunc=onObjectClick)
 
 
 #canv.tag_bind(buttonId, '<ButtonPress-1>', onObjectClick)
+
 canv.pack()
 root.mainloop()

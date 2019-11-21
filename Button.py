@@ -8,7 +8,7 @@ def initButton(canvas):
         button = canvas.create_rectangle(
             x, y, x + width, y + height, width=5, fill="black")
         text = canvas.create_text(
-            (x + width)/2, (y + height)/2 + 5, fill="white", text=text)
+            x + width/2, y + height/2, fill="white", text=text)
 
         def clickFeedback(event):
             nonlocal button
