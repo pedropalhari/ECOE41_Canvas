@@ -103,13 +103,22 @@ def initVertex(canvas, GLOBAL_OBJ):
         # Animaçõezinhas de press
         def onEnter(event):
             nonlocal vertex
-            print(canvas.itemcget(vertex, "fill"))
-            canvas.itemconfig(vertex, fill="white",  outline="black")            
+            
+            # Se o vértice já tiver sido processado e visitado
+            if(canvas.itemcget(vertex, "fill") == "green"):
+                canvas.itemconfig(vertex, fill="green2",  outline="black")      
+            else:
+                canvas.itemconfig(vertex, fill="white",  outline="black")            
+            
             canvas.itemconfig(text, fill="black")
 
         def onLeave(event):
             nonlocal vertex
-            canvas.itemconfig(vertex, fill="black",  outline="black")
+
+            if(canvas.itemcget(vertex, "fill") == "green2"):
+                canvas.itemconfig(vertex, fill="green",  outline="black")
+            else:
+                canvas.itemconfig(vertex, fill="black",  outline="black")
             canvas.itemconfig(text, fill="white")
 
         canvas.tag_bind(vertex, '<Enter>', onEnter)
