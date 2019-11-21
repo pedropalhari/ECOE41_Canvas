@@ -79,16 +79,28 @@ def initVertex(canvas, GLOBAL_OBJ):
             nonlocal canvas
 
             globalLineSet = GLOBAL_OBJ["lineSet"]
+            globalGraph = GLOBAL_OBJ["graph"]
 
             # Deleta todas as linhas associadas a ele
-            for lineId, verts in globalLineSet.items():
+            for lineId, verts in list(globalLineSet.items()):
                 # O vértice que estou deletando tá nessa linha
                 if(vertex in verts):
                     canvas.delete(lineId)
+                    del globalLineSet[lineId]
 
             # Deleta o vértice
             canvas.delete(vertex)   
             canvas.delete(text)   
+            
+            # Deleta as referências dele nos objetos globais
+            del globalGraph[vertex]
+
+            # Remove da lista de adjacencias
+            for vertexId, neighbors in globalGraph.items():
+                if(vertex in neighbors):
+                    neighbors.remove(vertex)
+
+            print(vertex, globalGraph)
 
         # Animaçõezinhas de press
         def onEnter(event):

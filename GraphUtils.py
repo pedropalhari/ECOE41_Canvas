@@ -51,7 +51,15 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
         if(lineId not in linesThatShouldKeepExisting):
             canvas.delete(lineId)
 
-    vertexThatShouldKeepExisting = []
+    allVertex = GLOBAL_OBJ["graph"].keys()
+    vertexThatShouldKeepExisting = {}
+
+    #for lineId, verts in globalLineSet.items():
+
+
+
+
+
 
     
 
