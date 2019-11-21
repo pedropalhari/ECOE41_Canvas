@@ -46,6 +46,7 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
                 # A linha que representa essa ligação tem esse par (x, y) de vértices
                 linesThatShouldKeepExisting.append(lineId)
 
+    # Se a linha não está nas linhas que montam a árvore, deleta ela
     for lineId in globalLineSet.keys():
         if(lineId not in linesThatShouldKeepExisting):
             canvas.delete(lineId)
