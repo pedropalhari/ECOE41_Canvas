@@ -54,7 +54,32 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
     allVertex = GLOBAL_OBJ["graph"].keys()
     vertexThatShouldKeepExisting = {}
 
-    #for lineId, verts in globalLineSet.items():
+    # Cria um mapa dos vértices que devem continuar existindo
+    for lineId, verts in globalLineSet.items():
+        vertexThatShouldKeepExisting[verts[0]] = True
+        vertexThatShouldKeepExisting[verts[1]] = True
+
+
+    # Copiado do Vertex.py:initVertex:createVertex:onPressMiddle que deleta o vértice
+    globalGraph = GLOBAL_OBJ["graph"]
+
+    # Deleta todas as linhas associadas a ele
+    for lineId, verts in list(globalLineSet.items()):
+        # O vértice que estou deletando tá nessa linha
+        if(vertex in verts):
+            canvas.delete(lineId)
+            del globalLineSet[lineId]
+
+    # Deleta o vértice
+    canvas.delete(vertex)   
+    
+    # Deleta as referências dele nos objetos globais
+    del globalGraph[vertex]
+
+    # Remove da lista de adjacencias
+    for vertexId, neighbors in globalGraph.items():
+        if(vertex in neighbors):
+            neighbors.remove(vertex)
 
 
 
