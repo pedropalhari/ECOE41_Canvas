@@ -20,6 +20,8 @@ def initVertex(canvas, GLOBAL_OBJ):
         text = canvas.create_text(
             x + r/2, y + r/2, fill="white", text=tagName)
 
+        GLOBAL_OBJ["graph"][vertex] = []
+
         def onPress(event):
             nonlocal GLOBAL_OBJ
             nonlocal vertex
@@ -52,13 +54,6 @@ def initVertex(canvas, GLOBAL_OBJ):
 
                 lineId = canvas.create_line(
                     fromCoords[0] + r/2 + math.cos(angle) * r/2, fromCoords[1] + r/2 + math.sin(angle) * r/2, toCoords[0] + r/2 - math.cos(angle) * r/2, toCoords[1] + r/2 - math.sin(angle) * r/2, width=5, arrow="last")
-
-                # Adicionando no grafo que vai ser passado para o BFS
-                if(globalGraph.get(fromVertexId) == None):
-                    globalGraph[fromVertexId] = []
-
-                if(globalGraph.get(toVertexId) == None):
-                    globalGraph[toVertexId] = []
 
                 globalGraph[fromVertexId].append(
                     toVertexId)

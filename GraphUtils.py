@@ -47,9 +47,10 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
                 linesThatShouldKeepExisting.append(lineId)
 
     # Se a linha não está nas linhas que montam a árvore, deleta ela
-    for lineId in globalLineSet.keys():
+    for lineId in list(globalLineSet.keys()):
         if(lineId not in linesThatShouldKeepExisting):
             canvas.delete(lineId)
+            del globalLineSet[lineId]
 
     allVertex = GLOBAL_OBJ["graph"].keys()
     vertexThatShouldKeepExisting = {}
@@ -59,34 +60,37 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
         vertexThatShouldKeepExisting[verts[0]] = True
         vertexThatShouldKeepExisting[verts[1]] = True
 
+    print('vertexThatShouldKeepExisting')
+    print(vertexThatShouldKeepExisting)
 
-    # Copiado do Vertex.py:initVertex:createVertex:onPressMiddle que deleta o vértice
-    globalGraph = GLOBAL_OBJ["graph"]
+    print()
+    print('allVertex')
+    print(allVertex)
 
-    # Deleta todas as linhas associadas a ele
-    for lineId, verts in list(globalLineSet.items()):
-        # O vértice que estou deletando tá nessa linha
-        if(vertex in verts):
-            canvas.delete(lineId)
-            del globalLineSet[lineId]
+    for vertex in list(allVertex):
+        print(vertex)
+        if(vertex not in vertexThatShouldKeepExisting.keys()):
+            print(vertex)
+            # Copiado do Vertex.py:initVertex:createVertex:onPressMiddle que deleta o vértice
+            globalGraph = GLOBAL_OBJ["graph"]
 
-    # Deleta o vértice
-    canvas.delete(vertex)   
-    
-    # Deleta as referências dele nos objetos globais
-    del globalGraph[vertex]
+            # Deleta todas as linhas associadas a ele
+            for lineId, verts in list(globalLineSet.items()):
+                # O vértice que estou deletando tá nessa linha
+                if(vertex in verts):
+                    canvas.delete(lineId)
+                    del globalLineSet[lineId]
 
-    # Remove da lista de adjacencias
-    for vertexId, neighbors in globalGraph.items():
-        if(vertex in neighbors):
-            neighbors.remove(vertex)
+            # Deleta o vértice
+            canvas.delete(vertex)
 
+            # Deleta as referências dele nos objetos globais
+            del globalGraph[vertex]
 
-
-
-
-
-    
+            # Remove da lista de adjacencias
+            for vertexId, neighbors in globalGraph.items():
+                if(vertex in neighbors):
+                    neighbors.remove(vertex)
 
 
 def bfs(graph, root, canvas):
