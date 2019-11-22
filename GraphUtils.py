@@ -1,6 +1,8 @@
 import collections
 import time
 
+TIME_SLEEP = 0.7
+
 
 def minimalTree(graph, root, canvas, GLOBAL_OBJ):
     visited, queue = set(), collections.deque([root])
@@ -16,7 +18,7 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
         print("EXPLORANDO VIZINHOS DE " + str(vertex))
         canvas.itemconfig(vertex, fill="red", outline="black")
         canvas.update()
-        # time.sleep(1)
+        time.sleep(TIME_SLEEP)
 
         for neighbour in graph[vertex]:
             print
@@ -30,7 +32,7 @@ def minimalTree(graph, root, canvas, GLOBAL_OBJ):
                 print("VIZINHO " + str(neighbour))
                 canvas.itemconfig(neighbour, fill="green", outline="black")
                 canvas.update()
-                # time.sleep(1)
+                time.sleep(TIME_SLEEP)
 
         canvas.itemconfig(vertex, fill="green", outline="black")
 
@@ -105,7 +107,7 @@ def bfs(graph, root, canvas):
         print("EXPLORANDO VIZINHOS DE " + str(vertex))
         canvas.itemconfig(vertex, fill="red", outline="black")
         canvas.update()
-        time.sleep(1)
+        time.sleep(TIME_SLEEP)
 
         for neighbour in graph[vertex]:
             print
@@ -115,7 +117,7 @@ def bfs(graph, root, canvas):
                 print("VIZINHO " + str(neighbour))
                 canvas.itemconfig(neighbour, fill="green", outline="black")
                 canvas.update()
-                time.sleep(1)
+                time.sleep(TIME_SLEEP)
 
         canvas.itemconfig(vertex, fill="green", outline="black")
 
